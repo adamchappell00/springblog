@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <head th:include="partials :: head" />
+</head>
+<body>
+<nav th:replace="partials :: navbar" />
+    <h2>Here is post <span th:text="${postId}"></span>!</h2>
+    <h1><span th:text="${postTitle}"></span></h1>
+    <p><span th:text="${postBody}"></span></p>
+
+<footer th:replace="partials :: footer" />
+</body>
+</html>

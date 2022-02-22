@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <head th:include="partials :: head" />
+</head>
+<body>
+    <nav th:replace="partials :: navbar" />
+    <h1>Here are all of the Blog Posts!</h1>
+    <div th:each="post : ${blogPosts}">
+        <h3 th:text="${post.title}" />
+        <a th:href=""></a>
+    </div>
+    <footer th:replace="partials :: footer" />
+</body>
+</html>
