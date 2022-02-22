@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Result</title>
+</head>
+<body>
+<h1>Let's See your Results!</h1>
+<h3>You chose <span th:text="${number}"></span>!</h3>
+<h3>The dice landed on <span th:text="${dice}"></span>!</h3>
+<h3 style="color : green" th:if="${correct}">
+    You guessed correctly!
+</h3>
+<h3 style="color : red" th:if="${!correct}">
+    Your guess was incorrect!
+</h3>
+</body>
+</html>
