@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8" />
+    <title>${param.title}</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav th:fragment="navbar" class="navbar navbar-bg primary" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/ads">SpringBlog</a>
+        </div>
+        <ul class ="nav navbar-nav navbar-left">
+            <li><a href="/">Search</a></li>
+            <li><a href="/">View Posts</a></li>
+        </ul>
+        <ul class ="nav navbar-nav navbar-right">
+            <li><a href="/">Login</a></li>
+            <li><a href="/">Register</a></li>
+        </ul>
+    </div><!-- /.container-fluid -->
+</nav>
+
+<!-- FOOTER -->
+<footer th:fragment="footer" class="text-center text-lg-start bg-light text-muted">
+    <div class="container-fluid">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <div class="me-5 d-none d-lg-block">
+                <span>Connect with us!</span>
+            </div>
+            <div>
+                <a href="" class="me-4 text-reset"><i class="fab fa-facebook-f"></i></a>
+                <a href="" class="me-4 text-reset"><i class="fab fa-twitter"></i></a>
+                <a href="" class="me-4 text-reset"><i class="fab fa-instagram"></i></a>
+                <a href="" class="me-4 text-reset"><i class="fab fa-github"></i></a>
+            </div>
+        </section>
+        <!-- Section: Links & Information  -->
+        <section class="">
+            <div class="container text-center text-md-start mt-5">
+                <div class="row mt-3">
+                    <!-- Column 1 of 4-->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            <i class="fas fa-gem me-3"></i>Regulus
+                        </h6>
+                        <p>Here is some stuff about us. It is much better than the typical placeholder text.</p>
+                    </div>
+                    <!-- Column 2 of 4-->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">Products</h6>
+                        <p><a href="" class="text-reset">Things</a></p>
+                        <p><a href="" class="text-reset">More Things</a></p>
+                        <p><a href="#!" class="text-reset">Still More</a></p>
+                        <p><a href="#!" class="text-reset">Last Thing</a></p>
+                    </div>
+                    <!-- Column 3 of 4 -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+                        <p><a href="#!" class="text-reset">Useful1</a></p>
+                        <p><a href="#!" class="text-reset">Useful2</a></p>
+                        <p><a href="#!" class="text-reset">Useful3</a></p>
+                        <p><a href="#!" class="text-reset">Useful4</a></p>
+                    </div>
+                    <!-- Column 4 of 4 -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <h6 class="text-uppercase fw-bold mb-4">Contact Us
+                        </h6>
+                        <p><i class="fas fa-home me-3"></i> San Antonio, TX 78205, US</p>
+                        <p><i class="fas fa-envelope me-3"></i>regulus@example.com</p>
+                        <p><i class="fas fa-phone me-3"></i>(210) 867-5309</p>
+                        <p><i class="fas fa-print me-3"></i>(210) 867-5310</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Copyright Bottom Footer-->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            © 2022 Copyright:
+            <a class="text-reset fw-bold">OurProject.com</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
