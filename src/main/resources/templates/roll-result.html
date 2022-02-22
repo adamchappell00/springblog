@@ -14,5 +14,9 @@
 <h3 style="color : red" th:if="${!correct}">
     Your guess was incorrect!
 </h3>
+
+<form>
+    <button type="submit" formaction="/roll-dice" formmethod="get">Try Again</button>
+</form>
 </body>
 </html>
