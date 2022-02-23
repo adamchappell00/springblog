@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <head th:include="partials :: head" />
+    <head th:include="partials/partials :: head" />
 </head>
 <body>
-<nav th:replace="partials :: navbar" />
-    <h2>Here is post <span th:text="${postId}"></span>!</h2>
-    <h1><span th:text="${postTitle}"></span></h1>
-    <p><span th:text="${postBody}"></span></p>
+<nav th:replace="partials/partials :: navbar" />
+    <h2>Here is post <span th:text="${id}"></span>!</h2>
+    <h1><span th:text="${post.title}"></span></h1>
+    <p><span th:text="${post.body}"></span></p>
 
-<footer th:replace="partials :: footer" />
+<footer th:replace="partials/partials :: footer" />
 </body>
 </html>
