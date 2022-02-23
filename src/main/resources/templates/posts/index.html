@@ -11,8 +11,11 @@
     <hr>
     <div th:each="post : ${allPosts}">
         <h3 th:text="${post.title}" />
+        <p th:text="${post.body}"></p>
+        <br>
+        <hr>
         <!--<a th:href="/posts/show/${post.id}"></a>-->
     </div>
-  <th:block th:include="partials/partials :: footer" />
+  <th:footer th:replace="partials/partials :: footer" />
 </body>
 </html>
