@@ -26,6 +26,9 @@ public class Post {
         this.body = body;
     }
     // Getters and Setters
+    public long getId() {
+        return id;
+    }
     public String getTitle() {
         return title;
     }

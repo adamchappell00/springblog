@@ -19,30 +19,25 @@ public class PostController {
 
     @GetMapping( "/posts")
     public String postsIndex(Model model){
-        List<Post> allPosts = new ArrayList<>();
-        Post first = new Post(1, "Hello World!", "This is my new Blog, it is awesome.");
-        Post second = new Post(2, "Blog 2: Electric Boogaloo", "I am writing a new post about more cool things.");
-        allPosts.add(first);
-        allPosts.add(second);
-        model.addAttribute("allPosts", allPosts);
+        model.addAttribute("allPosts", postDao.findAll());
         return "/posts/index";
     }
-    @GetMapping( "/posts/show/{id}")
-    public String showPostId(@PathVariable int id, Model model){
-        Post post1 = new Post(id,"I love Tacos", "Seriously let me tell you how much I love them...");
-        model.addAttribute("post", post1);
-        model.addAttribute("id", id);
+
+    @GetMapping("/posts/create")
+    public String showCreateForm(){
+        return "/posts/create";
+    }
+    @PostMapping("/posts/create")
+    public String submitCreatePost(@RequestParam("title") String title, @RequestParam("body") String body, Model model) {
+        Post createdPost = postDao.save(new Post(title,body));
+        model.addAttribute("post", createdPost);
+        model.addAttribute("id", createdPost.getId());
         return "/posts/show";
     }
-    @GetMapping(path = "/posts/create")
-    @ResponseBody
-    public String createForm(){
-        return "this is the page for the post creation form";
-    }
-
-    @PostMapping(path = "/posts/create")
-    @ResponseBody
-    public String createPost(){
-        return "This is the result of the post creation form submission!";
+    @GetMapping( "/posts/show/{id}")
+    public String showPostId(@PathVariable long id, Model model){
+        Post postShown = postDao.getById(id);
+        model.addAttribute("post", postShown);
+        return "/posts/show";
     }
 }
