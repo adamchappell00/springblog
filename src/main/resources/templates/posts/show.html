@@ -9,8 +9,12 @@
     <h2>Here is post <span th:text="${id}"></span>!</h2>
     <h1><span th:text="${post.title}"></span></h1>
     <p><span th:text="${post.body}"></span></p>
-
-    <button type="submit" formaction="/posts/delete" name="id" class="btn btn-warning btn-lg m-2" th:value="${post.getId()}">Delete Post</button>
-<footer th:replace="partials/partials :: footer" />
+    <form method="GET">
+        <button type="submit" formaction="/posts/edit" name="id" class="btn btn-warning btn-lg m-2"  th:value="${post.getId()}">Edit Post</button>
+    </form>
+    <form method="POST">
+        <button type="submit" formaction="/posts/delete" name="id" class="btn btn-danger btn-lg m-2"  th:value="${post.getId()}">Delete Post</button>
+    </form>
+        <footer th:replace="partials/partials :: footer" />
 </body>
 </html>
