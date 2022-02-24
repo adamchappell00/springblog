@@ -40,4 +40,10 @@ public class PostController {
         model.addAttribute("post", postShown);
         return "/posts/show";
     }
+    @PostMapping("/posts/delete")
+    public String deletePost(@PathVariable long id, Model model){
+        postDao.deleteById(id);
+        model.addAttribute("id", id);
+        return "/posts/deleted";
+    }
 }
