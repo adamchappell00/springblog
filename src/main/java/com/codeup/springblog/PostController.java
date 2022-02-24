@@ -10,6 +10,13 @@ import java.util.List;
 
 @Controller
 public class PostController {
+
+    private final PostRepository postDao;
+
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
+    }
+
     @GetMapping( "/posts")
     public String postsIndex(Model model){
         List<Post> allPosts = new ArrayList<>();
