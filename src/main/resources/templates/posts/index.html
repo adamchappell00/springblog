@@ -11,10 +11,9 @@
     <hr>
     <div th:each="post : ${allPosts}">
         <h3 th:text="${post.title}" />
-        <p th:text="${post.body}"></p>
+        <a th:href="|/posts/show/${post.getId()}|">View This Post</a>
         <br>
         <hr>
-        <!--<a th:href="/posts/show/${post.id}"></a>-->
     </div>
   <th:footer th:replace="partials/partials :: footer" />
 </body>
