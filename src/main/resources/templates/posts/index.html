@@ -11,7 +11,7 @@
     <hr>
     <div th:each="post : ${allPosts}">
         <h3 th:text="${post.title}" />
-        <a th:href="|/posts/show/${post.getId()}|">View This Post</a>
+        <a th:href="|/posts/${post.getId()}/show|">View This Post</a>
         <br>
         <hr>
     </div>

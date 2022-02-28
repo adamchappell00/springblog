@@ -37,7 +37,7 @@ public class PostController {
         postDao.save(new Post(tempUser, title,body));
         return "redirect:/posts";
     }
-    @GetMapping( "/posts/show/{id}")
+    @GetMapping( "/posts/{id}/show")
     public String showPostId(@PathVariable long id, Model model){
         Post postShown = postDao.getById(id);
         model.addAttribute("post", postShown);
@@ -50,7 +50,7 @@ public class PostController {
         return "/posts/deleted";
     }
     @GetMapping("/posts/{id}/edit")
-    public String showEdit(@PathVariable("id") long id, Model model){
+    public String showEdit(@PathVariable long id, Model model){
         Post editPost = postDao.getOne(id);
         model.addAttribute("post", editPost);
         return "/posts/edit";
