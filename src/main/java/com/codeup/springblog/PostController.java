@@ -43,8 +43,8 @@ public class PostController {
         model.addAttribute("post", postShown);
         return "/posts/show";
     }
-    @PostMapping("/posts/delete")
-    public String deletePost(@RequestParam("id") long id, Model model){
+    @PostMapping("/posts/{id}/delete")
+    public String deletePost(@PathVariable long id, Model model){
         postDao.deleteById(id);
         model.addAttribute("id", id);
         return "/posts/deleted";
@@ -56,12 +56,12 @@ public class PostController {
         return "/posts/edit";
     }
     @PostMapping("/posts/{id}/edit")
-    public String submitEditPost(@PathVariable("id") long id, @RequestParam("title") String title, @RequestParam("body") String body, Model model){
+    public String submitEditPost(@PathVariable long id, @RequestParam("title") String title, @RequestParam("body") String body, Model model){
         Post editedPost = postDao.getOne(id);
         editedPost.setTitle(title);
         editedPost.setBody(body);
         postDao.save(editedPost);
         model.addAttribute("post", editedPost);
-        return "/posts/show";
+        return "redirect:/posts/"+id+"/show";
     }
 }
