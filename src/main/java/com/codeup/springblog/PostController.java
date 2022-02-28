@@ -36,7 +36,9 @@ public class PostController {
     @PostMapping("/posts/create")
     public String submitCreatePost(@RequestParam("title") String title, @RequestParam("body") String body) {
         User tempUser = userDao.getById(1L);
-        postDao.save(new Post(tempUser, title,body));
+        Post createdPost = postDao.save(new Post(tempUser, title,body));
+        String messageBody = "A new post was created on your account. The Post ID is: " + createdPost.getId() + ".";
+        emailService.prepareAndSend(createdPost, "New Post Created",messageBody);
         return "redirect:/posts";
     }
     @GetMapping( "/posts/{id}/show")
