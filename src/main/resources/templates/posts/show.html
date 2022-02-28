@@ -9,7 +9,7 @@
     <h2>Here is post <span th:text="${id}"></span>!</h2>
     <h1><span th:text="${post.title}"></span></h1>
     <p><span th:text="${post.body}"></span></p>
-    <p>Posted By:<span th:text="${post.getOwner().getEmail()}"></span></p>
+    <p>Posted By:<span th:text="${post.getUser().getEmail()}"></span></p>
     <form method="GET">
         <button type="submit" formaction="/posts/edit" name="id" class="btn btn-warning btn-lg m-2"  th:value="${post.getId()}">Edit Post</button>
     </form>

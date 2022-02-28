@@ -34,9 +34,7 @@ public class PostController {
     public String submitCreatePost(@RequestParam("title") String title, @RequestParam("body") String body, Model model) {
         User tempUser = userDao.getById(1L);
         Post createdPost = postDao.save(new Post(tempUser, title,body));
-        model.addAttribute("post", createdPost);
-        model.addAttribute("id", createdPost.getId());
-        return "/posts/show";
+        return "redirect:/posts";
     }
     @GetMapping( "/posts/show/{id}")
     public String showPostId(@PathVariable long id, Model model){

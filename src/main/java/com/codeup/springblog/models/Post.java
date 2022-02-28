@@ -15,25 +15,26 @@ public class Post {
     private String body;
 
     @ManyToOne
-    @JoinColumn (name = "owner_id")
-    private User owner;
+    @JoinColumn (name = "user_id")
+    private User user;
+
     // Contstructors - No arg, Title+Body, and Id+Title+Body
     public Post(){}
-    public Post(User owner, String title, String body){
-        this.owner = owner;
+    public Post(User user, String title, String body){
+        this.user = user;
         this.title = title;
         this.body = body;
     }
     public Post(long id, User owner, String title, String body){
         this.id = id;
-        this.owner = owner;
+        this.user = user;
         this.title = title;
         this.body = body;
     }
     // Getters and Setters
     public long getId(){                        return id;}
     public String getTitle(){                   return title;}
-    public User getOwner(){                     return owner;}
+    public User getUser(){                     return user;}
     public void setTitle(String title){         this.title = title;}
     public String getBody(){                    return body;}
     public void setBody(String body){           this.body = body;}
