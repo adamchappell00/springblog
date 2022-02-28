@@ -14,7 +14,8 @@ public class Post {
     @Column(nullable = false)
     private String body;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn (name = "owner_id")
     private User owner;
     // Contstructors - No arg, Title+Body, and Id+Title+Body
     public Post(){}
