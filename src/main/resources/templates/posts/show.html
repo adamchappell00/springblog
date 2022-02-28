@@ -11,7 +11,7 @@
     <p><span th:text="${post.body}"></span></p>
     <p>Posted By:<span th:text="${post.getUser().getEmail()}"></span></p>
     <form method="GET">
-        <button type="submit" formaction="/posts/edit" name="id" class="btn btn-warning btn-lg m-2"  th:value="${post.getId()}">Edit Post</button>
+        <button type="submit" th:formaction="|/posts/${post.getId()}/edit|" class="btn btn-warning btn-lg m-2">Edit Post</button>
     </form>
     <form method="POST">
         <button type="submit" formaction="/posts/delete" name="id" class="btn btn-danger btn-lg m-2"  th:value="${post.getId()}">Delete Post</button>

@@ -10,7 +10,7 @@
 <h1>Edit this Blog Posts!</h1>
 <hr>
 <div  class="m-2 p-2">
-    <form action="/posts/edit" method="POST">
+    <form th:action="|/posts/${post.getId()}/edit|" method="POST">
         <div class="form-group">
             <label for="title">Title</label>
             <input id="title" name="title" class="form-control" type="text" th:value="${post.getTitle()}">
