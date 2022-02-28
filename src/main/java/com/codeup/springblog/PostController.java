@@ -1,6 +1,7 @@
 package com.codeup.springblog;
 
 import com.codeup.springblog.models.Post;
+import com.codeup.springblog.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +13,10 @@ import java.util.List;
 public class PostController {
 
     private final PostRepository postDao;
-
-    public PostController(PostRepository postDao) {
+    private final UserRepository userDao;
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @GetMapping( "/posts")
@@ -29,7 +31,8 @@ public class PostController {
     }
     @PostMapping("/posts/create")
     public String submitCreatePost(@RequestParam("title") String title, @RequestParam("body") String body, Model model) {
-        Post createdPost = postDao.save(new Post(title,body));
+        User tempUser = userDao.getById(1L);
+        Post createdPost = postDao.save(new Post(tempUser, title,body));
         model.addAttribute("post", createdPost);
         model.addAttribute("id", createdPost.getId());
         return "/posts/show";
