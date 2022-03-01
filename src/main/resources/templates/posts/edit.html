@@ -10,16 +10,15 @@
 <h1>Edit this Blog Posts!</h1>
 <hr>
 <div  class="m-2 p-2">
-    <form th:action="|/posts/${post.getId()}/edit|" method="POST">
+    <form th:action="|/posts/${post.getId()}/edit|" th:method="POST" th:object="${post}">
         <div class="form-group">
             <label for="title">Title</label>
-            <input id="title" name="title" class="form-control" type="text" th:value="${post.getTitle()}">
+            <input id="title" name="title" class="form-control" type="text" th:field="*{title}" th:value="${post.getTitle()}">
         </div>
         <div class="form-group">
             <label for="body">Body</label>
-            <input id="body" name="body" class="form-control" type="text" th:value="${post.getBody()}">
+            <input id="body" name="body" class="form-control" type="text" th:field="*{body}" th:value="${post.getBody()}">
         </div>
-        <input id="id" name="id" type="hidden" th:value="${post.getId()}">
         <button class="btn btn-lg btn-secondary mt-2 mb-2" type="submit">Submit</button>
     </form>
 </div>

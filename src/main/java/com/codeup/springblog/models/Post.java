@@ -20,12 +20,12 @@ public class Post {
 
     // Contstructors - No arg, Title+Body, and Id+Title+Body
     public Post(){}
-    public Post(User user, String title, String body){
+   /* public Post(User user, String title, String body){
         this.user = user;
         this.title = title;
         this.body = body;
-    }
-    public Post(long id, User owner, String title, String body){
+    }*/
+    public Post(long id, User user, String title, String body){
         this.id = id;
         this.user = user;
         this.title = title;
