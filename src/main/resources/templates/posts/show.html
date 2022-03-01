@@ -13,7 +13,7 @@
     <form method="GET">
         <button type="submit" th:formaction="|/posts/${post.getId()}/edit|" class="btn btn-warning btn-lg m-2">Edit Post</button>
     </form>
-    <form method="POST">
+    <form method="DELETE">
         <button type="submit" th:formaction="|/posts/${post.getId()}/delete|" name="id" class="btn btn-danger btn-lg m-2"  th:value="${post.getId()}">Delete Post</button>
     </form>
         <footer th:replace="partials/partials :: footer" />
