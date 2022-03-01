@@ -1,4 +1,4 @@
-package com.codeup.springblog.controllers;
+package com.codeup.springblog.models;
 
 import com.codeup.springblog.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
