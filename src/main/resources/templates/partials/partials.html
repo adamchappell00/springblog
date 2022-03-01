@@ -17,8 +17,20 @@
         </ul>
         <ul class ="nav navbar-nav">
             <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
-            <li class="nav-item"><a class="nav-link" th:href="@{/register}">Register</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/register}" th:method="POST">Register</a></li>
         </ul>
+        <ul class="nav navbar-nav">
+            <li class="nav-item"><a class="nav-link" th:href="@{/profile}">Profile</a></li>
+            </li>
+
+            <li class="nav-item">
+                <form th:action="@{/logout}" th:method="post">
+                    <button type="submit" class="nav-link">Logout</button>
+                </form>
+            </li>
+        </ul>
+
+
     </div><!-- /.container-fluid -->
 </nav>
 
