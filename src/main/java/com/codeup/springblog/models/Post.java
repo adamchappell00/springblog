@@ -34,8 +34,10 @@ public class Post {
     // Getters and Setters
     public long getId(){                        return id;}
     public String getTitle(){                   return title;}
-    public User getUser(){                     return user;}
-    public void setTitle(String title){         this.title = title;}
     public String getBody(){                    return body;}
+    public User getUser(){                      return user;}
+    public void setId(long id){                 this.id = id;}
     public void setBody(String body){           this.body = body;}
+    public void setTitle(String title){         this.title = title;}
+    public void setUser(User user){             this.user = user;}
 }

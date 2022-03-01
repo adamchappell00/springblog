@@ -34,10 +34,11 @@ public class PostController {
         return "/posts/create";
     }
     @PostMapping("/posts/create")
-    public String submitCreatePost(@RequestParam("title") String title, @RequestParam("body") String body) {
+    public String submitCreatePost(@ModelAttribute Post post) {
         User tempUser = userDao.getById(1L);
-        Post createdPost = postDao.save(new Post(tempUser, title,body));
-        String messageBody = "A new post was created on your account. The Post ID is: " + createdPost.getId() + ".";
+        post.setUser(tempUser);
+        Post createdPost = postDao.save(post);
+        String messageBody = "A new post was created on your account. The Post ID is: " + createdPost.getId() + ". The title for the post is: " + createdPost.getTitle() + ".";
         emailService.prepareAndSend(createdPost, "New Post Created",messageBody);
         return "redirect:/posts";
     }
