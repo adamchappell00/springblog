@@ -5,6 +5,7 @@ import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +36,8 @@ public class PostController {
     }
     @PostMapping("/posts/create")
     public String submitCreatePost(@ModelAttribute Post post) {
-        User tempUser = userDao.getById(1L);
-        post.setUser(tempUser);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUser(userDao.findByUsername(currentUser.getUsername()));
         Post createdPost = postDao.save(post);
         String messageBody = "A new post was created on your account. The Post ID is: " + createdPost.getId() + ". The title for the post is: " + createdPost.getTitle() + ".";
         emailService.prepareAndSend(createdPost, "New Post Created",messageBody);

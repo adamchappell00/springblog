@@ -33,6 +33,7 @@ public class User {
         this.password = password;
         this.posts = posts;
     }
+    public long getId(){return id;}
     public String getUsername() {
         return username;
     }
