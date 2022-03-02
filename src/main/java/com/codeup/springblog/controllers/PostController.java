@@ -28,7 +28,12 @@ public class PostController {
         model.addAttribute("allPosts", postDao.findAll());
         return "/posts/index";
     }
-
+    @GetMapping("/profile")
+    public String profileView(Model model){
+       // User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+       // model.setAttribute()
+        return "users/profile";
+    }
     @GetMapping("/posts/create")
     public String showCreateForm(Model model){
         model.addAttribute("post", new Post());
