@@ -38,8 +38,7 @@ public class PostController {
     public String submitCreatePost(@ModelAttribute Post post) {
         post.setUser( (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         Post createdPost = postDao.save(post);
-        String messageBody = "A new post was created on your account. The Post ID is: " + createdPost.getId() + ". The title for the post is: " + createdPost.getTitle() + ".";
-        emailService.prepareAndSend(createdPost, "New Post Created",messageBody);
+        emailService.sendPostCreation(createdPost);
         return "redirect:/posts";
     }
     @GetMapping( "/posts/{id}/show")
