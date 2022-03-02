@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class PostController {
 
@@ -30,8 +32,9 @@ public class PostController {
     }
     @GetMapping("/profile")
     public String profileView(Model model){
-       // User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-       // model.setAttribute()
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Post> userPosts = postDao.findAllByUser(currentUser);
+        model.addAttribute("userPosts", userPosts);
         return "users/profile";
     }
     @GetMapping("/posts/create")

@@ -9,8 +9,14 @@
 <body>
 <nav th:replace="partials/partials :: navbar" />
 <h1>Hello <span th:text="${#authentication.principal.username}"/>!</h1>
-<h4>Email: <span th:text="${authentication.principal.email}"/></h4>
+<h4>Email: <span th:text="${#authentication.principal.email}"/></h4>
 <hr>
+<h2>Here are Your Posts!</h2>
+
+<div th:each="post : ${userPosts}">
+    <h3 th:text="${post.title}" />
+    <a th:href="|/posts/${post.getId()}/show|">View This Post</a>
+</div>
 
 <th:footer th:replace="partials/partials :: footer" />
 </body>
