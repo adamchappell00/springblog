@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Post</title>
+    <head th:include="partials/partials :: head" />
+</head>
+<body>
+<nav th:replace="partials/partials :: navbar" />
+<h1>Hello <span th:text="${#authentication.principal.username}"/>!</h1>
+<h4>Email: <span th:text="${authentication.principal.email}"/></h4>
+<hr>
+
+<th:footer th:replace="partials/partials :: footer" />
+</body>
+</html>
