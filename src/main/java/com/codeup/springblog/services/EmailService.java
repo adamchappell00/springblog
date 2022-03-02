@@ -32,4 +32,11 @@ public class EmailService {
             System.err.println(ex.getMessage());
         }
     }
+    public void sendPostCreation(Post post){
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(from);
+        msg.setTo(post.getUser().getEmail());
+        msg.setSubject("New SpringBlog Post Created: " + post.getTitle());
+        msg.setText("This post has been created. The post id is " + post.getId() + ".");
+    }
 }
