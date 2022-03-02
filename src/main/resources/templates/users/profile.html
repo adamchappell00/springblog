@@ -15,7 +15,15 @@
 
 <div th:each="post : ${userPosts}">
     <h3 th:text="${post.title}" />
-    <a th:href="|/posts/${post.getId()}/show|">View This Post</a>
+    <form method="GET">
+        <button type="submit" th:formaction="|/posts/${post.getId()}/show|" class="btn btn-secondary btn-lg m-2">View Post</button>
+    </form>
+    <form method="GET">
+        <button type="submit" th:formaction="|/posts/${post.getId()}/edit|" class="btn btn-warning btn-lg m-2">Edit Post</button>
+    </form>
+    <form method="DELETE">
+        <button type="submit" th:formaction="|/posts/${post.getId()}/delete|" name="id" class="btn btn-danger btn-lg m-2"  th:value="${post.getId()}">Delete Post</button>
+    </form>
 </div>
 
 <th:footer th:replace="partials/partials :: footer" />

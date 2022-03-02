@@ -11,12 +11,7 @@
     <h1><span th:text="${post.title}"></span></h1>
     <p><span th:text="${post.body}"></span></p>
     <p>Posted By:<span th:text="${post.getUser().getEmail()}"></span></p>
-    <form method="GET">
-        <button type="submit" th:formaction="|/posts/${post.getId()}/edit|" class="btn btn-warning btn-lg m-2">Edit Post</button>
-    </form>
-    <form method="DELETE">
-        <button type="submit" th:formaction="|/posts/${post.getId()}/delete|" name="id" class="btn btn-danger btn-lg m-2"  th:value="${post.getId()}">Delete Post</button>
-    </form>
-        <footer th:replace="partials/partials :: footer" />
+
+<footer th:replace="partials/partials :: footer" />
 </body>
 </html>
