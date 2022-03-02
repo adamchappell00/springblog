@@ -13,12 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
-
 import javax.servlet.http.HttpSession;
-
 import static org.springframework.http.RequestEntity.post;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -50,7 +47,7 @@ class SpringblogApplicationTests {
             newUser.setEmail("testUser@codeup.com");
             testUser = userDao.save(newUser);
         }
-        httpSession = this.mvc.perform(post("/login").with(csrf())
+        /*httpSession = this.mvc.perform(post("/login").with(csrf())
                         .param("username", "testUser")
                         .param("password", "password"))
                 .andExpect(status().is(HttpStatus.FOUND.value()))
@@ -58,7 +55,7 @@ class SpringblogApplicationTests {
                 .andReturn()
                 .getRequest()
                 .getSession();
-
+*/
     }
 
 

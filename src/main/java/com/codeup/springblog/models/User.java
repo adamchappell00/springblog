@@ -23,11 +23,14 @@ public class User {
 
     public User(){}
     public User(User copy){
+        id = copy.id;
         email = copy.email;
         username = copy.username;
         password = copy.password;
+        posts = copy.posts;
     }
-    public User(String username, String email, String password, List<Post> posts){
+    public User(long id, String username, String email, String password, List<Post> posts){
+        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
