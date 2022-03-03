@@ -111,7 +111,7 @@ public class PostIntegrationTests {
     @Test
     public void testPostsIndex() throws Exception {
         Post existingPost = postDao.findAll().get(0);
-        // Makes a Get request to /posts and verifies that we get some of the static text of the posts/index.html template and at least the title from the first Post is present in the template.
+        // Makes a Get request to /posts and verifies that we get the static text of the posts/index.html template and at least the title from the first Post is present in the template.
         this.mvc.perform(get("/posts"))
                 .andExpect(status().isOk())
                 // Test the static content of the page (In this case the h1)
