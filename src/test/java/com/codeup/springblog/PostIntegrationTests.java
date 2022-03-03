@@ -90,7 +90,7 @@ public class PostIntegrationTests {
     public void testShowPost() throws Exception {
         Post existingPost = postDao.findAll().get(0);
         // Makes a Get request to /posts/{id}/show and expect a redirection to the Post show page
-        this.mvc.perform(get("/posts/" + existingPost.getId() + "/show")
+        this.mvc.perform(get("/posts/" + existingPost.getId())
                         .with(csrf())
                         .session((MockHttpSession) httpSession))
                 .andExpect(status().isOk())

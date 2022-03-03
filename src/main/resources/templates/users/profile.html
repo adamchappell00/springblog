@@ -16,7 +16,7 @@
 <div th:each="post : ${userPosts}">
     <h3 th:text="${post.title}" />
     <form method="GET">
-        <button type="submit" th:formaction="|/posts/${post.getId()}/show|" class="btn btn-secondary btn-lg m-2">View Post</button>
+        <button type="submit" th:formaction="|/posts/${post.getId()}|" class="btn btn-secondary btn-lg m-2">View Post</button>
     </form>
     <form method="GET">
         <button type="submit" th:formaction="|/posts/${post.getId()}/edit|" class="btn btn-warning btn-lg m-2">Edit Post</button>

@@ -49,7 +49,7 @@ public class PostController {
         emailService.sendPostCreation(createdPost);
         return "redirect:/posts";
     }
-    @GetMapping( "/posts/{id}/show")
+    @GetMapping( "/posts/{id}")
     public String showPostId(@PathVariable long id, Model model){
         Post postShown = postDao.getById(id);
         model.addAttribute("post", postShown);
