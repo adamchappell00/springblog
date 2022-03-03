@@ -54,7 +54,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/posts/{id}/edit", // only authenticated users can edit posts
                         "/posts/{id}/delete" // only authenticated users can edit posts
                 )
-                .authenticated()
-        ;
+                .authenticated();
     }
 }

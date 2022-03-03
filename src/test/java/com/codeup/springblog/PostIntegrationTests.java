@@ -1,12 +1,16 @@
 package com.codeup.springblog;
 
+
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.models.User;
 import com.codeup.springblog.repositories.PostRepository;
 import com.codeup.springblog.repositories.UserRepository;
+
 import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,19 +19,17 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import javax.servlet.http.HttpSession;
-import static javax.swing.UIManager.get;
-import static org.hamcrest.Matchers.containsString;
-import static org.junit.Assert.assertNotNull;
-import static org.springframework.http.RequestEntity.post;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import static junit.framework.TestCase.assertNotNull;
+import static org.junit.matchers.JUnitMatchers.containsString;
 
 @RunWith(SpringRunner.class)
-@AutoConfigureMockMvc
 @SpringBootTest(classes = SpringblogApplication.class)
+@AutoConfigureMockMvc
 public class PostIntegrationTests {
 
     private User testUser;
@@ -44,29 +46,22 @@ public class PostIntegrationTests {
 
     @Before
     public void setup() throws Exception {
-        testUser = userDao.findByUsername("testUser");
+        testUser = userDao.findByUsername("integrationTestUser");
         if(testUser == null){
-            User newUser = new User("testUser","testUser@codeup.com","password");
-            newUser.setUsername("testUser");
-            newUser.setPassword(passwordEncoder.encode("password"));
-            newUser.setEmail("testUser@codeup.com");
+            User newUser = new User("integrationTestUser","testUser@codeup.com",passwordEncoder.encode("password"));
             testUser = userDao.save(newUser);
         }
-        httpSession = this.mvc.perform(post("/login").with(csrf())
-                        .param("username", "testUser")
+        httpSession = this.mvc.perform( post("/login").with(csrf())
+                        .param("username", "integrationTestUser")
                         .param("password", "password"))
                 .andExpect(status().is(HttpStatus.FOUND.value()))
-                .andExpect(redirectedUrl("/posts"))
+                .andExpect(redirectedUrl("/profile"))
                 .andReturn()
                 .getRequest()
                 .getSession();
     }
 
-
-
-    // Further Tests Below
-
-    // User session Loads
+    // Sanity Tests - User Session and Context loads
     @Test
     public void contextLoads() {
         // Sanity Test, just to make sure the MVC bean is working
@@ -77,6 +72,7 @@ public class PostIntegrationTests {
         // It makes sure the returned session is not null
         assertNotNull(httpSession);
     }
+    // CRUD Tests for /posts functions
     // Makes a Post request to /posts/create and expect a redirection to the Post
     @Test
     public void testCreatePost() throws Exception {
