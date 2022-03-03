@@ -44,10 +44,15 @@ public class PostController {
     }
     @PostMapping("/posts/create")
     public String submitCreatePost(@ModelAttribute Post post) {
-        post.setUser( (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        Post createdPost = postDao.save(post);
-        emailService.sendPostCreation(createdPost);
-        return "redirect:/posts";
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(currentUser == null){
+            return "redirect:/login";
+        } else {
+            post.setUser(currentUser);
+            Post createdPost = postDao.save(post);
+            emailService.sendPostCreation(createdPost);
+            return "redirect:/posts/" + createdPost.getId();
+        }
     }
     @GetMapping( "/posts/{id}")
     public String showPostId(@PathVariable long id, Model model){

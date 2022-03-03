@@ -72,9 +72,19 @@ public class PostIntegrationTests {
         assertNotNull(httpSession);
     }
     // CRUD Tests for /posts functions
+    @Test
+    public void testCreatePostFailWithAnonymous() throws Exception {
+        int random = (int)(Math.random()*(100)+1);
+        this.mvc.perform(
+                        post("/posts/create")
+                                // Add all the required parameters to your request like this
+                                .param("title", "test"+random)
+                                .param("body", "WooCreateTEST"+random))
+                .andExpect(status().isForbidden());
+    }
     // Makes a Post request to /posts/create and expect a redirection to the Post
     @Test
-    public void testCreatePost() throws Exception {
+    public void testCreatePostWithAuth() throws Exception {
         int random = (int)(Math.random()*(100)+1);
         this.mvc.perform(
                         post("/posts/create").with(csrf())
