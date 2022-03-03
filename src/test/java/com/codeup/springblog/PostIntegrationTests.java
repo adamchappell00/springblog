@@ -91,7 +91,9 @@ public class PostIntegrationTests {
         Post existingPost = postDao.findAll().get(0);
 
         // Makes a Get request to /posts/{id}/show and expect a redirection to the Post show page
-        this.mvc.perform(get("/ads/" + existingPost.getId() + "/show"))
+        this.mvc.perform(get("/posts/" + existingPost.getId() + "/show")
+                        .with(csrf())
+                        .session((MockHttpSession) httpSession))
                 .andExpect(status().isOk())
                 // Test the dynamic content of the page
                 .andExpect(content().string(containsString(existingPost.getBody())));

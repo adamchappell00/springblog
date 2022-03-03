@@ -57,9 +57,16 @@ public class PostController {
     }
     @DeleteMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable long id, Model model){
-        postDao.deleteById(id);
-        model.addAttribute("id", id);
-        return "/posts/deleted";
+        Post postToDelete = postDao.getById(id);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(currentUser.getId() == postToDelete.getUser().getId()){
+            postDao.deleteById(id);
+            model.addAttribute("id", id);
+            return "/posts/deleted";
+        }else {
+            return  "redirect:/posts";
+        }
+
     }
     @GetMapping("/posts/{id}/edit")
     public String showEdit(@PathVariable long id, Model model){
