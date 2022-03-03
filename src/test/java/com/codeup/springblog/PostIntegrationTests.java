@@ -20,8 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import static junit.framework.TestCase.assertNotNull;
@@ -76,12 +75,13 @@ public class PostIntegrationTests {
     // Makes a Post request to /posts/create and expect a redirection to the Post
     @Test
     public void testCreatePost() throws Exception {
+        int random = (int)(Math.random()*(100)+1);
         this.mvc.perform(
                         post("/posts/create").with(csrf())
                                 .session((MockHttpSession) httpSession)
                                 // Add all the required parameters to your request like this
-                                .param("title", "test")
-                                .param("body", "WooCreateTEST"))
+                                .param("title", "test"+random)
+                                .param("body", "WooCreateTEST"+random))
                 .andExpect(status().is3xxRedirection());
     }
 
@@ -89,7 +89,6 @@ public class PostIntegrationTests {
     @Test
     public void testShowPost() throws Exception {
         Post existingPost = postDao.findAll().get(0);
-
         // Makes a Get request to /posts/{id}/show and expect a redirection to the Post show page
         this.mvc.perform(get("/posts/" + existingPost.getId() + "/show")
                         .with(csrf())
@@ -102,7 +101,6 @@ public class PostIntegrationTests {
     @Test
     public void testPostsIndex() throws Exception {
         Post existingPost = postDao.findAll().get(0);
-
         // Makes a Get request to /posts and verifies that we get some of the static text of the posts/index.html template and at least the title from the first Post is present in the template.
         this.mvc.perform(get("/posts"))
                 .andExpect(status().isOk())
@@ -115,22 +113,23 @@ public class PostIntegrationTests {
     @Test
     public void testDeletePost() throws Exception {
         // Creates a test Post to be deleted
+        int random = (int)(Math.random()*(100)+1);
+
         this.mvc.perform(
                         post("/posts/create").with(csrf())
                                 .session((MockHttpSession) httpSession)
-                                .param("title", "Post to be deleted")
+                                .param("title", "Post to be deleted"+random)
                                 .param("body", "won't last long"))
                 .andExpect(status().is3xxRedirection());
         // Get the recent Post that matches the title
-        Post existingPost = postDao.findByTitle("Post to be deleted");
+        Post existingPost = postDao.findByTitle("Post to be deleted"+random);
         // Makes a Post request to /posts/{id}/delete and expect a redirection to the Posts index
         this.mvc.perform(
-                        post("/posts/" + existingPost.getId() + "/delete").with(csrf())
+                        delete("/posts/" + existingPost.getId() + "/delete").with(csrf())
                                 .session((MockHttpSession) httpSession)
                                 .param("id", String.valueOf(existingPost.getId())))
-                .andExpect(status().is3xxRedirection());
+                .andExpect(status().is2xxSuccessful());
     }
-
 
 
 }
