@@ -8,14 +8,14 @@
 </head>
 <body>
   <nav th:replace="partials/partials :: navbar" />
-    <h1>Here are all of the Blog Posts!</h1>
-    <hr>
-    <div th:each="post : ${allPosts}">
-        <h3 th:text="${post.title}" />
-        <a th:href="|/posts/${post.getId()}|">View This Post</a>
-        <br>
-        <hr>
+    <h1 class="title-row">Here are all of the Blog Posts!</h1>
+  <div class="main-content row justify-content-evenly">
+    <div class="post-card" th:each="post : ${allPosts}">
+        <h4 class="text-center" th:text="${post.getTitle()}" />
+        <h6 class="text-center">By: <span th:text="${post.getUser().getUsername()}"></span></h6>
+        <a class="text-center" th:href="|/posts/${post.getId()}|">View This Post</a>
     </div>
+  </div>
   <th:footer th:replace="partials/partials :: footer" />
 </body>
 </html>
