@@ -1,8 +1,27 @@
 
+.main-content{
+    margin: 0;
+    width: 100%;
+    background-color: lightblue;
+}
 
-
+.title-row{
+    margin: .5em 0;
+    color: olive;
+    text-align: center;
+}
+.error-header{
+    color: white;
+    background-color: red;
+}
 .post-card{
-
-
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 1em;
+    padding: 2em;
+    border: 1px solid olivedrab;
+    border-radius: 10px;
+    background-color: wheat;
 }
 
