@@ -1,11 +1,18 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to SpringBlog!</title>
+    <title>SpringBlog</title>
+    <head th:include="partials/partials :: head" />
 </head>
 <body>
   <nav th:replace="partials/partials :: navbar" />
+<h1 class="text-center">Welcome to SpringBlog!</h1>
 
+<!-- Add A Description-->
+
+<!-- Add Pictures-->
 </body>
 </html>
