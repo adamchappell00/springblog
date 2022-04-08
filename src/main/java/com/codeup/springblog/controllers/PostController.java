@@ -25,6 +25,12 @@ public class PostController {
         this.emailService = emailService;
     }
 
+    @GetMapping("/")
+    @ResponseBody
+    public String index(){
+        return "This is the landing page!";
+    }
+
     @GetMapping( "/posts")
     public String postsIndex(Model model){
         model.addAttribute("allPosts", postDao.findAll());
@@ -33,8 +39,8 @@ public class PostController {
     @GetMapping("/profile")
     public String profileView(Model model){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Post> userPosts = postDao.findAllByUser(currentUser);
-        model.addAttribute("userPosts", userPosts);
+        currentUser = userDao.getById(currentUser.getId());
+        model.addAttribute("userPosts", currentUser.getPosts());
         return "users/profile";
     }
     @GetMapping("/posts/create")
