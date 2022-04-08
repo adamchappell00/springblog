@@ -26,9 +26,8 @@ public class PostController {
     }
 
     @GetMapping("/")
-    @ResponseBody
     public String index(){
-        return "This is the landing page!";
+        return "homepage";
     }
 
     @GetMapping( "/posts")
